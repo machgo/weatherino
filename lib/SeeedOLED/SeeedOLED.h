@@ -97,10 +97,12 @@ void setHorizontalScrollProperties(bool direction,unsigned char startPage, unsig
 void activateScroll();
 void deactivateScroll();
 
+//custom functions
+void putPixel(unsigned int x, unsigned int y, bool dark);
+
+
 };
 
-extern SeeedOLED SeeedOled;  // SeeedOLED object 
+extern SeeedOLED SeeedOled;  // SeeedOLED object
 
 #endif
-
-

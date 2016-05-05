@@ -1,15 +1,10 @@
-/**
- * Blink
- * Turns on an LED on for one second,
- * then off for one second, repeatedly.
- */
 #include <Arduino.h>
 #include <DHT.h>
 #include <Wire.h>
 #include <SeeedOLED.h>
 #include <SFE_BMP180.h>
 
-#define DHTPIN 2 //temp sensonr
+#define DHTPIN 2 //temp sensor
 #define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -17,6 +12,8 @@ SFE_BMP180 pressure;
 double baseline = 1013.25; // baseline pressure
 
 double getPressure();
+void drawData();
+void drawGraph();
 
 void setup()
 {
@@ -33,7 +30,7 @@ void setup()
     SeeedOled.setTextXY(0,0);
     SeeedOled.putString("Weatherino");
     SeeedOled.setTextXY(7,0);
-    SeeedOled.putString("Marco Schmid");
+    SeeedOled.putString("blablabla");
 
     SeeedOled.setTextXY(2,0);
     SeeedOled.putString("T:");
@@ -59,12 +56,13 @@ void setup()
     pressure.begin();
 }
 
-double tese()
+void loop()
 {
-    return 0.0;
+    drawData();
+    //drawGraph();
 }
 
-void loop()
+void drawData()
 {
     float h = dht.readHumidity();
     float t = dht.readTemperature();
@@ -81,6 +79,14 @@ void loop()
     SeeedOled.putFloat(a);
     delay(2000);
 }
+
+void drawGraph()
+{
+    SeeedOled.clearDisplay();
+    SeeedOled.putPixel(1, 1, true);
+    delay(1000);
+}
+
 
 double getPressure()
 {
